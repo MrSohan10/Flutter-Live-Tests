@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 0),
               Text('Jhon Doe',
                   style: TextStyle(color: Colors.green, fontSize: 30)),
               Text(
