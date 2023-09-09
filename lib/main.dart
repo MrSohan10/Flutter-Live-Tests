@@ -18,20 +18,7 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.green,
-                ),
-                child: Icon(
-                  Icons.person,
-                  size: 50,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 5),
+              Icon(Icons.account_circle_rounded, size: 50, color: Colors.green),
               Text('Jhon Doe',
                   style: TextStyle(color: Colors.green, fontSize: 30)),
               Text(
