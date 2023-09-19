@@ -9,37 +9,77 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Profile'),
+          title: Text('My Shopping List'),
           centerTitle: true,
+          actions: [Icon(Icons.shopping_cart)],
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.green,
-                ),
-                child: Icon(
-                  Icons.person,
-                  size: 50,
-                  color: Colors.white,
-                ),
+        body: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                size: 50,
               ),
-              SizedBox(height: 0),
-              Text('Jhon Doe',
-                  style: TextStyle(color: Colors.green, fontSize: 30)),
-              Text(
-                'Flutter Batch 4',
-                style: TextStyle(color: Colors.blue, fontSize: 25),
-              )
-            ],
-          ),
+              title: Text(
+                'Apples',
+                style: TextStyle(fontSize: 30),
+              ),
+              contentPadding: EdgeInsets.all(16),
+              horizontalTitleGap: 40,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                size: 50,
+              ),
+              title: Text(
+                'Bananas',
+                style: TextStyle(fontSize: 30),
+              ),
+              contentPadding: EdgeInsets.all(16),
+              horizontalTitleGap: 40,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                size: 50,
+              ),
+              title: Text(
+                'Bread',
+                style: TextStyle(fontSize: 30),
+              ),
+              contentPadding: EdgeInsets.all(16),
+              horizontalTitleGap: 40,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                size: 50,
+              ),
+              title: Text(
+                'Milk',
+                style: TextStyle(fontSize: 30),
+              ),
+              contentPadding: EdgeInsets.all(16),
+              horizontalTitleGap: 40,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.shop,
+                size: 50,
+              ),
+              title: Text(
+                'Eggs',
+                style: TextStyle(fontSize: 30),
+              ),
+              contentPadding: EdgeInsets.all(16),
+              horizontalTitleGap: 40,
+            ),
+          ],
         ),
       ),
     );
