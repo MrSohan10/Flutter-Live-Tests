@@ -6,79 +6,89 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My Shopping List'),
-          centerTitle: true,
-          actions: [Icon(Icons.shopping_cart)],
-        ),
-        body: ListView(
-          padding: EdgeInsets.all(16),
+      home: CounterApp(),
+    );
+  }
+}
+
+class CounterApp extends StatefulWidget {
+  const CounterApp({super.key});
+
+  @override
+  State<CounterApp> createState() => _CounterAppState();
+}
+
+class _CounterAppState extends State<CounterApp> {
+  int _countValue = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Counter App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ListTile(
-              leading: Icon(
-                Icons.shop,
-                size: 50,
-              ),
-              title: Text(
-                'Apples',
-                style: TextStyle(fontSize: 30),
-              ),
-              contentPadding: EdgeInsets.all(16),
-              horizontalTitleGap: 40,
+            Text(
+              'Count:',
+              style: TextStyle(fontSize: 25),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.shop,
-                size: 50,
-              ),
-              title: Text(
-                'Bananas',
-                style: TextStyle(fontSize: 30),
-              ),
-              contentPadding: EdgeInsets.all(16),
-              horizontalTitleGap: 40,
+            Text(
+              _countValue.toString(),
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.shop,
-                size: 50,
-              ),
-              title: Text(
-                'Bread',
-                style: TextStyle(fontSize: 30),
-              ),
-              contentPadding: EdgeInsets.all(16),
-              horizontalTitleGap: 40,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.shop,
-                size: 50,
-              ),
-              title: Text(
-                'Milk',
-                style: TextStyle(fontSize: 30),
-              ),
-              contentPadding: EdgeInsets.all(16),
-              horizontalTitleGap: 40,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.shop,
-                size: 50,
-              ),
-              title: Text(
-                'Eggs',
-                style: TextStyle(fontSize: 30),
-              ),
-              contentPadding: EdgeInsets.all(16),
-              horizontalTitleGap: 40,
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      _countValue++;
+                      setState(() {});
+                      if (_countValue >= 5) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Button press $_countValue times'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Close',
+                                        style: TextStyle(color: Colors.blue),
+                                      ))
+                                ],
+                              );
+                            });
+                      }
+                    },
+                    child: Text(
+                      '+',
+                      style: TextStyle(fontSize: 30),
+                    )),
+                SizedBox(width: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      if (_countValue > 0) {
+                        _countValue--;
+                      }
+                      setState(() {});
+                    },
+                    child: Text(
+                      '-',
+                      style: TextStyle(fontSize: 30),
+                    )),
+              ],
+            )
           ],
         ),
       ),
