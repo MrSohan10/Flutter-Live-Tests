@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,87 +10,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CounterApp(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('News Feed'),
+        ),
+        body: const ImageFeed(),
+      ),
     );
   }
 }
 
-class CounterApp extends StatefulWidget {
-  const CounterApp({super.key});
+class ImageFeed extends StatefulWidget {
+  const ImageFeed({super.key});
 
   @override
-  State<CounterApp> createState() => _CounterAppState();
+  ImageFeedState createState() => ImageFeedState();
 }
 
-class _CounterAppState extends State<CounterApp> {
-  int _countValue = 0;
+class ImageFeedState extends State<ImageFeed> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter App'),
+    final orientation = MediaQuery.of(context).orientation;
+
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: orientation == Orientation.portrait ? 1 : 2,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Count:',
-              style: TextStyle(fontSize: 25),
-            ),
-            Text(
-              _countValue.toString(),
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      _countValue++;
-                      setState(() {});
-                      if (_countValue >= 5) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Button press $_countValue times'),
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Close',
-                                        style: TextStyle(color: Colors.blue),
-                                      ))
-                                ],
-                              );
-                            });
-                      }
-                    },
-                    child: Text(
-                      '+',
-                      style: TextStyle(fontSize: 30),
-                    )),
-                SizedBox(width: 20),
-                ElevatedButton(
-                    onPressed: () {
-                      if (_countValue > 0) {
-                        _countValue--;
-                      }
-                      setState(() {});
-                    },
-                    child: Text(
-                      '-',
-                      style: TextStyle(fontSize: 30),
-                    )),
-              ],
-            )
-          ],
-        ),
-      ),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            elevation: 10,
+            child: Image.network('https://via.placeholder.com/150'),
+          ),
+        );
+      },
     );
   }
 }
