@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Temperature: ${weatherInfo[index]["temperature"].toString()}C'),
+                  Text('Temperature: ${weatherInfo[index]["temperature"].toString()}°C'),
                   Text('Condition: ${weatherInfo[index]["condition"].toString()}'),
                   Text('Humidity: ${weatherInfo[index]["humidity"].toString()}%'),
                   Text('Wind Speed ${weatherInfo[index]["windSpeed"].toString()} m/s'),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-        separatorBuilder: (_, __) => Divider(),
+        separatorBuilder: (_, __) => Divider(height: 4,),
       ),
     );
   }
